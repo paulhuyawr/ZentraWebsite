@@ -2962,3 +2962,79 @@ body > * {
     animation: none;
   }
 }
+
+/* ===== ZENTRAMC EPIC BACKGROUND ===== */
+body {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(165,0,255,.18), transparent 28%),
+    radial-gradient(circle at 85% 30%, rgba(255,0,110,.14), transparent 30%),
+    radial-gradient(circle at 50% 90%, rgba(120,0,255,.12), transparent 35%),
+    #030006;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.55) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(200,80,255,.4) 1px, transparent 1.5px);
+  background-size: 90px 90px, 140px 140px;
+  animation: particleDrift 22s linear infinite;
+  opacity: .32;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  width: 700px;
+  height: 700px;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  z-index: -2;
+  background: radial-gradient(
+    circle,
+    rgba(165,0,255,.13) 0%,
+    rgba(255,0,120,.05) 30%,
+    transparent 70%
+  );
+  filter: blur(35px);
+  animation: ambientGlow 7s ease-in-out infinite alternate;
+}
+
+@keyframes particleDrift {
+  from {
+    transform: translate(0,0) rotate(0deg);
+  }
+  to {
+    transform: translate(90px,140px) rotate(8deg);
+  }
+}
+
+@keyframes ambientGlow {
+  from {
+    opacity: .45;
+    transform: translate(-50%,-50%) scale(.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1.15);
+  }
+}
+
+/* Moving neon grid */
+body {
+  background-image:
+    linear-gradient(rgba(165,0,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,0,120,.035) 1px, transparent 1px),
+    radial-gradient(circle at 50% 20%, rgba(130,0,255,.12), transparent 45%);
+  background-size: 55px 55px, 55px 55px, 100% 100%;
+  background-attachment: fixed;
+}
+
