@@ -2984,8 +2984,8 @@ body::before {
     radial-gradient(circle, rgba(255,255,255,.55) 1px, transparent 1.5px),
     radial-gradient(circle, rgba(200,80,255,.4) 1px, transparent 1.5px);
   background-size: 90px 90px, 140px 140px;
-  animation: particleDrift 22s linear infinite;
-  opacity: .32;
+  animation: particleDrift 8s linear infinite;
+  opacity: .55;
 }
 
 body::after {

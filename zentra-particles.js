@@ -27,10 +27,10 @@
     particles = Array.from({length: count}, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
-      r: Math.random() * 1.7 + 0.4,
-      vx: (Math.random() - .5) * .18,
-      vy: (Math.random() - .5) * .18,
-      a: Math.random() * .6 + .15,
+      r: Math.random() * 2.4 + 0.7,
+      vx: (Math.random() - .5) * .75,
+      vy: (Math.random() - .5) * .75,
+      a: Math.random() * .75 + .25,
       pulse: Math.random() * Math.PI * 2
     }));
   }
@@ -41,7 +41,7 @@
     for (const p of particles) {
       p.x += p.vx;
       p.y += p.vy;
-      p.pulse += .018;
+      p.pulse += .045;
 
       if (p.x < -10) p.x = w + 10;
       if (p.x > w + 10) p.x = -10;
