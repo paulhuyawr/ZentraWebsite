@@ -3038,3 +3038,51 @@ body {
   background-attachment: fixed;
 }
 
+
+/* ===== FIX: KEEP ALL UI CLICKABLE ===== */
+#zentra-particles,
+body::before,
+body::after {
+  pointer-events: none !important;
+}
+
+#zentra-particles {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+}
+
+#header,
+header,
+main,
+section,
+nav,
+button,
+a,
+input,
+textarea,
+select,
+.card,
+.btn,
+button *,
+a * {
+  position: relative;
+  z-index: 5;
+}
+
+#header {
+  z-index: 100 !important;
+}
+
+.sidebar,
+.sidebar.open,
+.overlay {
+  z-index: 1000 !important;
+}
+
+.menu,
+.close,
+.nav a {
+  pointer-events: auto !important;
+}
+
