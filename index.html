@@ -16,182 +16,259 @@
 <!-- ZENTRA INTRO START -->
 <div id="zentraIntro">
 
-  <div class="introGlow"></div>
+  <div class="zentraIntroGlow"></div>
 
-  <div class="introContent">
-    <div class="introLogo">
+  <div class="zentraIntroCenter">
+    <div class="zentraIntroLogo">
       ZENTRA<span>MC</span>
     </div>
 
-    <div class="introSub">THE BEST REALM</div>
+    <div class="zentraIntroTag">
+      THE BEST REALM
+    </div>
 
-    <button id="enterZentra">
+    <button id="zentraEnter">
       TAP TO ENTER
-      <i></i>
+      <span></span>
     </button>
   </div>
 
 </div>
 
 <style>
+/* ===== ZENTRAMC START SCREEN ===== */
+
 #zentraIntro{
-  position:fixed!important;
-  inset:0!important;
-  width:100vw!important;
-  height:100vh!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  margin:0!important;
-  padding:0!important;
-  background:#030006!important;
-  z-index:2147483647!important;
-  overflow:hidden!important;
+  position:fixed !important;
+  inset:0 !important;
+  width:100vw !important;
+  height:100vh !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  background:#030006 !important;
+
+  margin:0 !important;
+  padding:0 !important;
+
+  z-index:2147483647 !important;
+  overflow:hidden !important;
+
+  opacity:1 !important;
+  visibility:visible !important;
+
+  box-sizing:border-box !important;
 }
 
-#zentraIntro .introContent{
-  position:relative!important;
-  z-index:10!important;
-  width:100%!important;
-  display:flex!important;
-  flex-direction:column!important;
-  align-items:center!important;
-  justify-content:center!important;
-  text-align:center!important;
+#zentraIntro *,
+#zentraIntro *::before,
+#zentraIntro *::after{
+  box-sizing:border-box;
 }
 
-#zentraIntro .introGlow{
-  position:absolute;
-  width:520px;
-  height:520px;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  border-radius:50%;
+.zentraIntroGlow{
+  position:absolute !important;
+
+  width:550px !important;
+  height:550px !important;
+
+  left:50% !important;
+  top:50% !important;
+
+  transform:translate(-50%,-50%) !important;
+
+  border-radius:50% !important;
+
   background:radial-gradient(
     circle,
-    rgba(165,0,255,.30),
+    rgba(165,0,255,.30) 0%,
     rgba(255,0,130,.10) 35%,
     transparent 70%
-  );
-  filter:blur(30px);
-  animation:introGlow 2s ease-in-out infinite alternate;
+  ) !important;
+
+  filter:blur(30px) !important;
+
+  animation:zentraGlow 2.5s ease-in-out infinite alternate;
 }
 
-#zentraIntro .introLogo{
-  position:relative;
-  font-family:Arial,sans-serif!important;
-  font-size:clamp(52px,14vw,110px)!important;
-  font-weight:900!important;
-  line-height:1!important;
-  letter-spacing:7px!important;
-  color:#fff!important;
+.zentraIntroCenter{
+  position:relative !important;
+  z-index:2 !important;
+
+  width:100% !important;
+
+  display:flex !important;
+  flex-direction:column !important;
+
+  align-items:center !important;
+  justify-content:center !important;
+
+  text-align:center !important;
+
+  margin:0 !important;
+  padding:20px !important;
+}
+
+.zentraIntroLogo{
+  font-family:Arial,sans-serif !important;
+
+  font-size:clamp(50px,14vw,110px) !important;
+
+  font-weight:900 !important;
+
+  line-height:1 !important;
+
+  letter-spacing:7px !important;
+
+  color:#fff !important;
+
   text-shadow:
     0 0 20px rgba(255,255,255,.2),
-    0 0 50px rgba(165,0,255,.5);
+    0 0 45px rgba(165,0,255,.5),
+    0 0 90px rgba(255,0,130,.15) !important;
 }
 
-#zentraIntro .introLogo span{
-  color:#c000ff!important;
+.zentraIntroLogo span{
+  color:#c000ff !important;
 }
 
-#zentraIntro .introSub{
-  position:relative;
-  margin-top:16px!important;
-  color:#aaa2b0!important;
-  font:800 10px Arial,sans-serif!important;
-  letter-spacing:6px!important;
+.zentraIntroTag{
+  margin-top:18px !important;
+
+  font-family:Arial,sans-serif !important;
+
+  font-size:10px !important;
+
+  font-weight:800 !important;
+
+  letter-spacing:6px !important;
+
+  color:#aaa2b0 !important;
 }
 
-#enterZentra{
-  position:relative;
-  margin-top:38px;
-  padding:14px 30px;
-  border:1px solid rgba(190,70,255,.5);
-  border-radius:12px;
-  background:rgba(165,0,255,.12);
-  color:#fff;
-  font:900 10px Arial,sans-serif;
-  letter-spacing:3px;
-  cursor:pointer;
-  overflow:hidden;
-  box-shadow:0 0 25px rgba(165,0,255,.2);
+#zentraEnter{
+  position:relative !important;
+
+  margin-top:40px !important;
+
+  padding:15px 32px !important;
+
+  border:1px solid rgba(190,70,255,.55) !important;
+
+  border-radius:12px !important;
+
+  background:rgba(165,0,255,.10) !important;
+
+  color:#fff !important;
+
+  font-family:Arial,sans-serif !important;
+
+  font-size:10px !important;
+
+  font-weight:900 !important;
+
+  letter-spacing:3px !important;
+
+  cursor:pointer !important;
+
+  pointer-events:auto !important;
+
+  box-shadow:
+    0 0 25px rgba(165,0,255,.18),
+    inset 0 0 20px rgba(165,0,255,.05) !important;
+
+  transition:transform .2s,box-shadow .2s !important;
 }
 
-#enterZentra:hover{
-  transform:scale(1.04);
-  box-shadow:0 0 40px rgba(165,0,255,.4);
+#zentraEnter:hover{
+  transform:scale(1.05) !important;
+
+  box-shadow:
+    0 0 45px rgba(165,0,255,.4),
+    0 0 80px rgba(255,0,130,.12) !important;
 }
 
-#enterZentra i{
+#zentraEnter span{
   position:absolute;
+
   top:0;
   left:-100%;
+
   width:70%;
   height:100%;
+
   background:linear-gradient(
     90deg,
     transparent,
-    rgba(255,255,255,.25),
+    rgba(255,255,255,.3),
     transparent
   );
+
   transform:skewX(-20deg);
-  animation:buttonShine 2s linear infinite;
+
+  animation:zentraShine 2s linear infinite;
 }
 
-@keyframes introGlow{
+@keyframes zentraGlow{
   from{
+    opacity:.45;
     transform:translate(-50%,-50%) scale(.8);
-    opacity:.5;
   }
+
   to{
-    transform:translate(-50%,-50%) scale(1.12);
     opacity:1;
+    transform:translate(-50%,-50%) scale(1.15);
   }
 }
 
-@keyframes buttonShine{
+@keyframes zentraShine{
   from{left:-100%}
   to{left:150%}
 }
 
-/* Immediate exit after tap */
-#zentraIntro.exit{
-  display:none!important;
+/* IMPORTANT:
+   Intro does NOT disappear automatically.
+   It stays until the button is pressed.
+*/
+
+#zentraIntro.zentraEntered{
+  display:none !important;
 }
+
 </style>
 
 <script>
 (function(){
 
   const intro = document.getElementById("zentraIntro");
-  const button = document.getElementById("enterZentra");
+  const enter = document.getElementById("zentraEnter");
 
-  if(!intro || !button) return;
+  if(!intro || !enter) return;
 
-  button.addEventListener("click", function(){
+  enter.addEventListener("click", function(){
 
-    /* Start music immediately from user interaction */
+    /* Start background music */
     const music = document.getElementById("zentraMusic");
 
     if(music){
-      music.volume = 0.35;
       music.loop = true;
-      music.play().catch(()=>{});
+      music.volume = 0.35;
+
+      music.play().catch(function(){});
     }
 
-    /* Immediately remove intro */
-    intro.classList.add("exit");
-
-    setTimeout(function(){
-      intro.remove();
-    }, 20);
+    /* IMMEDIATE EXIT */
+    intro.classList.add("zentraEntered");
 
   }, {once:true});
 
 })();
 </script>
 <!-- ZENTRA INTRO END -->
+
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const intro = document.getElementById("zentraIntro");
