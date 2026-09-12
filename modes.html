@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ZentraMC — Game Modes</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+
+
+<main class="page">
+
+  <div class="page-title">
+
+    <div class="mini">
+      THE NETWORK
+    </div>
+
+    <h1>
+      GAME
+      <span class="gradient">MODES</span>
+    </h1>
+
+    <p>
+      Choose your way to play.
+      Every mode has something different waiting for you.
+    </p>
+
+  </div>
+
+
+  <div class="mode-grid">
+
+
+    <div class="mode">
+
+      <div class="mode-icon">
+        🌎
+      </div>
+
+      <h3>
+        Survival
+      </h3>
+
+      <p>
+        Build your base, explore the world
+        and create your own story inside ZentraMC.
+      </p>
+
+    </div>
+
+
+
+    <div class="mode">
+
+      <div class="mode-icon">
+        ❤️
+      </div>
+
+      <h3>
+        Lifesteal
+      </h3>
+
+      <p>
+        Fight, steal hearts and climb the
+        power ladder. Every battle matters.
+      </p>
+
+    </div>
+
+
+
+    <div class="mode">
+
+      <div class="mode-icon">
+        🛏️
+      </div>
+
+      <h3>
+        BedWars
+      </h3>
+
+      <p>
+        Protect your bed, destroy your enemies
+        and be the last team standing.
+      </p>
+
+    </div>
+
+
+
+    <div class="mode">
+
+      <div class="mode-icon">
+        ☁️
+      </div>
+
+      <h3>
+        SkyWars
+      </h3>
+
+      <p>
+        Loot your island, gear up and fight
+        above the void.
+      </p>
+
+    </div>
+
+
+
+    <div class="mode">
+
+      <div class="mode-icon">
+        ⚔️
+      </div>
+
+      <h3>
+        Practice
+      </h3>
+
+      <p>
+        Train your PvP skills, master your
+        combos and become a better fighter.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</main>
+
+
+<div id="footer"></div>
+
+
+<script>
+
+fetch("header.html?v=3", {cache:"no-store"})
+.then(response => response.text())
+.then(html => {
+
+  document.getElementById("header").innerHTML = html;
+
+  initNavigation();
+
+  setActivePage();
+
+});
+
+
+fetch("footer.html")
+.then(response => response.text())
+.then(html => {
+
+  document.getElementById("footer").innerHTML = html;
+
+});
+
+</script>
+
+
+<script src="script.js"></script>
+
+<script src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#05030a">
+
+  <title>ZentraMC — The Realm</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+<!-- =====================================
+     INTRO SCREEN
+     ===================================== -->
+
+<div id="intro">
+
+  <div class="intro-inner">
+
+    <div class="intro-mark">
+      Z
+    </div>
+
+    <div class="intro-title">
+      <span>ZENTRA</span>MC
+    </div>
+
+    <div class="intro-line"></div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================
+     HEADER / SIDEBAR
+     ===================================== -->
+
+<div id="header"></div>
+
+
+
+<!-- =====================================
+     HOME
+     ===================================== -->
+
+<main class="page">
+
+<!-- ZENTRAMC LIVE STATUS -->
+<section class="z-live" id="z-live">
+
+  <div class="z-live-head">
+    <div>
+      <div class="z-live-kicker">ZENTRAMC NETWORK</div>
+      <h2>LIVE <span>STATUS</span></h2>
+    </div>
+
+    <div class="z-live-state" id="zState">
+      <b></b>
+      CHECKING
+    </div>
+  </div>
+
+  <div class="z-live-grid">
+
+    <div class="z-live-card">
+      <small>PLAYERS ONLINE</small>
+      <strong id="zPlayers">--</strong>
+      <em id="zMax">Checking...</em>
+    </div>
+
+    <div class="z-live-card">
+      <small>SERVER VERSION</small>
+      <strong id="zVersion">--</strong>
+      <em>Java + Bedrock</em>
+    </div>
+
+    <div class="z-live-card">
+      <small>SERVER IP</small>
+      <strong>zentramc</strong>
+      <em>loca.lol:20272</em>
+    </div>
+
+  </div>
+
+  <button class="z-copy" onclick="copyZentraIP()">
+    COPY SERVER IP
+  </button>
+
+  <span class="z-copied" id="zCopied"></span>
+
+</section>
+
+<style>
+
+.z-live{
+  width:calc(100% - 40px);
+  max-width:1000px;
+  margin:35px auto 80px;
+  padding:25px;
+
+  box-sizing:border-box;
+
+  position:relative;
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;
+
+  background:
+    radial-gradient(
+      circle at 100% 0,
+      rgba(130,0,255,.16),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 0 100%,
+      rgba(255,0,65,.11),
+      transparent 42%
+    ),
+    rgba(7,5,10,.92);
+
+  box-shadow:
+    0 20px 70px rgba(0,0,0,.5),
+    inset 0 0 50px rgba(120,0,255,.025);
+
+  animation:zLiveIn .7s cubic-bezier(.16,1,.3,1);
+}
+
+.z-live::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      115deg,
+      transparent 35%,
+      rgba(255,255,255,.035) 50%,
+      transparent 65%
+    );
+
+  transform:translateX(-100%);
+  animation:zLiveShine 5s infinite;
+
+  pointer-events:none;
+}
+
+.z-live-head{
+  position:relative;
+  z-index:2;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.z-live-kicker{
+  color:#77717d;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.z-live h2{
+  margin:6px 0 0;
+
+  color:#f5f2f6;
+
+  font-family:Rajdhani,sans-serif;
+  font-size:32px;
+  font-weight:900;
+  letter-spacing:-1px;
+}
+
+.z-live h2 span{
+  background:
+    linear-gradient(
+      90deg,
+      #ff1744,
+      #c000ff,
+      #7200ff
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  color:transparent;
+}
+
+.z-live-state{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  padding:9px 13px;
+
+  border-radius:30px;
+
+  color:#8b838f;
+
+  background:rgba(255,255,255,.025);
+
+  border:1px solid rgba(255,255,255,.07);
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.z-live-state b{
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:#777;
+
+  display:block;
+}
+
+.z-live-state.online{
+  color:#83c29e;
+  border-color:rgba(0,255,130,.16);
+}
+
+.z-live-state.online b{
+  background:#00ff83;
+  box-shadow:0 0 14px #00ff83;
+  animation:zPulse 1.4s infinite;
+}
+
+.z-live-state.offline{
+  color:#c17b87;
+}
+
+.z-live-state.offline b{
+  background:#ff1744;
+  box-shadow:0 0 14px #ff1744;
+}
+
+.z-live-grid{
+  position:relative;
+  z-index:2;
+
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+  gap:12px;
+
+  margin-top:22px;
+}
+
+.z-live-card{
+  min-height:88px;
+  padding:17px;
+
+  box-sizing:border-box;
+
+  border-radius:15px;
+
+  background:rgba(0,0,0,.3);
+
+  border:1px solid rgba(255,255,255,.055);
+
+  transition:.3s;
+}
+
+.z-live-card:hover{
+  transform:translateY(-4px);
+
+  border-color:
+    rgba(170,0,255,.25);
+
+  box-shadow:
+    0 12px 30px rgba(100,0,180,.1);
+}
+
+.z-live-card small{
+  display:block;
+
+  color:#625b68;
+
+  font-size:8px;
+  font-weight:900;
+
+  letter-spacing:1.2px;
+}
+
+.z-live-card strong{
+  display:block;
+
+  margin-top:8px;
+
+  color:#eee;
+
+  font-family:Rajdhani,sans-serif;
+
+  font-size:27px;
+  font-weight:900;
+}
+
+.z-live-card em{
+  display:block;
+
+  margin-top:2px;
+
+  color:#625b68;
+
+  font-size:9px;
+
+  font-style:normal;
+}
+
+.z-copy{
+  position:relative;
+  z-index:2;
+
+  margin-top:17px;
+
+  padding:12px 18px;
+
+  border:0;
+  border-radius:10px;
+
+  cursor:pointer;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff1744,
+      #a000ff
+    );
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:1px;
+
+  transition:.3s;
+}
+
+.z-copy:hover{
+  transform:translateY(-3px);
+
+  box-shadow:
+    0 12px 30px rgba(170,0,255,.25);
+}
+
+.z-copied{
+  position:relative;
+  z-index:2;
+
+  margin-left:10px;
+
+  color:#8eb09f;
+
+  font-size:9px;
+}
+
+@keyframes zLiveIn{
+  from{
+    opacity:0;
+    transform:translateY(25px) scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@keyframes zLiveShine{
+  0%,55%{
+    transform:translateX(-100%);
+  }
+  75%,100%{
+    transform:translateX(100%);
+  }
+}
+
+@keyframes zPulse{
+  50%{
+    transform:scale(1.5);
+    opacity:.5;
+  }
+}
+
+@media(max-width:700px){
+
+  .z-live{
+    width:calc(100% - 28px);
+    padding:20px;
+  }
+
+  .z-live-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .z-live-grid{
+    grid-template-columns:1fr;
+  }
+
+  .z-copy{
+    width:100%;
+  }
+
+  .z-copied{
+    display:block;
+    margin:9px 0 0;
+  }
+}
+
+</style>
+
+<script>
+
+async function updateZentraLive(){
+
+  const state =
+    document.getElementById("zState");
+
+  const players =
+    document.getElementById("zPlayers");
+
+  const max =
+    document.getElementById("zMax");
+
+  const version =
+    document.getElementById("zVersion");
+
+  try{
+
+    const r = await fetch(
+      "https://api.mcsrvstat.us/3/zentramc.loca.lol:20272",
+      {cache:"no-store"}
+    );
+
+    const data = await r.json();
+
+    if(data.online){
+
+      state.className =
+        "z-live-state online";
+
+      state.innerHTML =
+        "<b></b> ONLINE";
+
+      players.textContent =
+        data.players?.online ?? 0;
+
+      max.textContent =
+        "MAX " + (data.players?.max ?? "--");
+
+      version.textContent =
+        data.version || "1.21.11";
+
+    }else{
+
+      state.className =
+        "z-live-state offline";
+
+      state.innerHTML =
+        "<b></b> OFFLINE";
+
+      players.textContent = "0";
+      max.textContent = "Server offline";
+      version.textContent = "--";
+
+    }
+
+  }catch(e){
+
+    state.className =
+      "z-live-state offline";
+
+    state.innerHTML =
+      "<b></b> OFFLINE";
+
+    players.textContent = "--";
+    max.textContent = "Status unavailable";
+    version.textContent = "--";
+  }
+}
+
+function copyZentraIP(){
+
+  navigator.clipboard.writeText(
+    "zentramc.loca.lol:20272"
+  ).then(()=>{
+
+    const x =
+      document.getElementById("zCopied");
+
+    x.textContent = "✓ COPIED";
+
+    setTimeout(()=>{
+      x.textContent = "";
+    },2000);
+
+  });
+
+}
+
+updateZentraLive();
+
+setInterval(updateZentraLive,30000);
+
+</script>
+
+
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+
+      <div class="mini">
+        WELCOME TO THE NETWORK
+      </div>
+
+
+      <h1>
+
+        PLAY.<br>
+
+        <span class="gradient">
+          DOMINATE.
+        </span>
+
+      </h1>
+
+
+      <p>
+
+        Welcome to ZentraMC — a Minecraft network
+        built for survival, PvP, competition and
+        unforgettable adventures.
+
+      </p>
+
+
+      <div class="actions">
+
+        <a
+          href="modes.html"
+          class="btn primary"
+        >
+          EXPLORE MODES
+        </a>
+
+
+        <a
+          href="discord.html"
+          class="btn secondary"
+        >
+          JOIN DISCORD
+        </a>
+
+      </div>
+
+
+
+      <!-- SERVER IP -->
+
+      <div class="ip">
+
+        <code>
+          zentramc.loca.lol:20272
+        </code>
+
+        <button
+          class="copy"
+          onclick="copyIP()"
+        >
+          COPY IP
+        </button>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+</main>
+
+
+
+<!-- =====================================
+     FOOTER
+     ===================================== -->
+
+
+
+
+<style>
+.zentra-live-status{
+  max-width:1000px;
+  margin:70px auto;
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:24px;
+
+  background:
+    radial-gradient(
+      circle at 100% 0,
+      rgba(120,0,255,.12),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 0 100%,
+      rgba(255,0,60,.08),
+      transparent 42%
+    ),
+    rgba(255,255,255,.018);
+
+  box-shadow:0 30px 90px rgba(0,0,0,.4);
+
+  animation:zentraStatusIn .8s cubic-bezier(.16,1,.3,1) both;
+}
+
+.zentra-live-status::before{
+  content:"";
+  position:absolute;
+  top:-120%;
+  left:-40%;
+  width:30%;
+  height:320%;
+  transform:rotate(25deg);
+
+  background:linear-gradient(
+    transparent,
+    rgba(255,255,255,.07),
+    transparent
+  );
+
+  animation:zentraStatusShine 6s ease-in-out infinite;
+  pointer-events:none;
+}
+
+.status-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  position:relative;
+  z-index:1;
+}
+
+.status-label{
+  color:#77707c;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.status-top h2{
+  margin-top:7px;
+  font:900 34px Rajdhani,sans-serif;
+}
+
+.status-top h2 span{
+  background:linear-gradient(90deg,#ff1744,#a000ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.status-pill{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  padding:9px 13px;
+  border-radius:999px;
+
+  color:#9d969f;
+  background:rgba(255,255,255,.025);
+
+  border:1px solid rgba(255,255,255,.07);
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.status-pill i{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#777;
+  box-shadow:0 0 12px #777;
+}
+
+.status-pill.online{
+  border-color:rgba(0,255,130,.15);
+}
+
+.status-pill.online i{
+  background:#00ff83;
+  box-shadow:0 0 14px #00ff83;
+  animation:statusPulse 1.4s infinite;
+}
+
+.status-pill.offline{
+  border-color:rgba(255,23,68,.2);
+}
+
+.status-pill.offline i{
+  background:#ff1744;
+  box-shadow:0 0 14px #ff1744;
+}
+
+.status-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:25px;
+  position:relative;
+  z-index:1;
+}
+
+.status-box{
+  padding:20px;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;
+  background:rgba(0,0,0,.2);
+  transition:.3s;
+}
+
+.status-box:hover{
+  transform:translateY(-5px);
+  border-color:rgba(150,0,255,.2);
+  box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.status-box small{
+  display:block;
+  color:#625b67;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1.2px;
+}
+
+.status-box strong{
+  display:block;
+  margin-top:8px;
+  color:#eee;
+  font:900 27px Rajdhani,sans-serif;
+}
+
+.status-box span{
+  display:block;
+  margin-top:3px;
+  color:#625b67;
+  font-size:9px;
+}
+
+.copy-server-ip{
+  position:relative;
+  z-index:1;
+
+  margin-top:18px;
+  padding:13px 20px;
+
+  border:0;
+  border-radius:11px;
+
+  color:#fff;
+  background:linear-gradient(135deg,#ff1744,#a000ff);
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1px;
+
+  cursor:pointer;
+  transition:.3s;
+}
+
+.copy-server-ip:hover{
+  transform:translateY(-3px) scale(1.02);
+  box-shadow:0 12px 35px rgba(170,0,255,.2);
+}
+
+.copy-result{
+  display:inline-block;
+  margin-left:10px;
+  color:#817985;
+  font-size:9px;
+}
+
+@keyframes statusPulse{
+  50%{
+    transform:scale(1.45);
+    opacity:.55;
+  }
+}
+
+@keyframes zentraStatusIn{
+  from{
+    opacity:0;
+    transform:translateY(30px) scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@keyframes zentraStatusShine{
+  0%,55%{left:-40%}
+  75%,100%{left:135%}
+}
+
+@media(max-width:700px){
+
+  .zentra-live-status{
+    margin:45px 15px;
+    padding:22px;
+  }
+
+  .status-top{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .status-grid{
+    grid-template-columns:1fr;
+  }
+
+  .copy-server-ip{
+    width:100%;
+  }
+
+  .copy-result{
+    display:block;
+    margin:10px 0 0;
+  }
+}
+</style>
+
+<script>
+async function updateZentraStatus(){
+
+  const state = document.getElementById("serverState");
+  const players = document.getElementById("playerCount");
+  const max = document.getElementById("playerMax");
+  const version = document.getElementById("serverVersion");
+
+  try{
+
+    const response = await fetch(
+      "https://api.mcsrvstat.us/3/zentramc.loca.lol:20272",
+      {cache:"no-store"}
+    );
+
+    if(!response.ok) throw new Error("API error");
+
+    const data = await response.json();
+
+    if(data.online){
+
+      state.className = "status-pill online";
+      state.innerHTML = "<i></i> ONLINE";
+
+      players.textContent =
+        data.players?.online ?? 0;
+
+      max.textContent =
+        "MAX " + (data.players?.max ?? "--");
+
+      version.textContent =
+        data.version || "1.21.11";
+
+    }else{
+
+      state.className = "status-pill offline";
+      state.innerHTML = "<i></i> OFFLINE";
+
+      players.textContent = "0";
+      max.textContent = "Server offline";
+      version.textContent = "--";
+    }
+
+  }catch(error){
+
+    state.className = "status-pill offline";
+    state.innerHTML = "<i></i> OFFLINE";
+
+    players.textContent = "--";
+    max.textContent = "Status unavailable";
+    version.textContent = "--";
+  }
+}
+
+function copyZentraIP(){
+
+  const ip = "zentramc.loca.lol:20272";
+
+  navigator.clipboard.writeText(ip)
+  .then(()=>{
+
+    const result =
+      document.getElementById("copyResult");
+
+    result.textContent = "✓ COPIED!";
+
+    setTimeout(()=>{
+      result.textContent = "";
+    },2000);
+
+  });
+}
+
+updateZentraStatus();
+
+setInterval(updateZentraStatus,30000);
+</script>
+
+<div id="footer"></div>
+
+
+
+<!-- =====================================
+     LOAD HEADER + FOOTER
+     ===================================== -->
+
+<script>
+
+fetch("header.html?v=3", {cache:"no-store"})
+
+  .then(response => response.text())
+
+  .then(html => {
+
+    document
+      .getElementById("header")
+      .innerHTML = html;
+
+    initNavigation();
+
+    setActivePage();
+
+  });
+
+
+fetch("footer.html")
+
+  .then(response => response.text())
+
+  .then(html => {
+
+    document
+      .getElementById("footer")
+      .innerHTML = html;
+
+  });
+
+</script>
+
+
+
+<!-- MAIN SCRIPT -->
+
+<script src="script.js"></script>
+
+
+<script src="auth.js"></script>
+</body>
+</html>

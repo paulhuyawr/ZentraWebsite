@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZentraMC About Us</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.about-page{
+  min-height:100vh;
+  padding:145px 20px 90px;
+  overflow:hidden;
+}
+
+.about-hero{
+  max-width:1050px;
+  margin:auto;
+  text-align:center;
+}
+
+.about-hero h1{
+  margin:22px 0 0;
+  font:900 clamp(58px,9vw,105px)/.88 Rajdhani,sans-serif;
+  letter-spacing:-3px;
+  animation:titleIn .9s cubic-bezier(.16,1,.3,1) both;
+}
+
+.about-hero h1 span{
+  display:block;
+  background:linear-gradient(90deg,#ff1744,#c000ff,#6200ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  filter:drop-shadow(0 0 25px rgba(150,0,255,.2));
+}
+
+.about-hero > p{
+  max-width:650px;
+  margin:25px auto 55px;
+  color:#817985;
+  line-height:1.8;
+  font-size:13px;
+  animation:fadeUp .8s .2s both;
+}
+
+.founder-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+  max-width:900px;
+  margin:auto;
+}
+
+.founder-card{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:25px;
+  background:
+    radial-gradient(circle at 50% 0,rgba(124,0,255,.13),transparent 45%),
+    linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012));
+  box-shadow:0 30px 90px rgba(0,0,0,.45);
+  animation:cardIn .9s cubic-bezier(.16,1,.3,1) both;
+  transition:.45s;
+}
+
+.founder-card:nth-child(2){
+  animation-delay:.16s;
+}
+
+.founder-card:hover{
+  transform:translateY(-9px);
+  border-color:rgba(255,23,68,.3);
+  box-shadow:
+    0 40px 110px rgba(0,0,0,.55),
+    0 0 50px rgba(124,0,255,.1);
+}
+
+.founder-card::before{
+  content:"";
+  position:absolute;
+  top:-120%;
+  left:-40%;
+  width:35%;
+  height:320%;
+  transform:rotate(25deg);
+  background:linear-gradient(
+    transparent,
+    rgba(255,255,255,.08),
+    transparent
+  );
+  animation:shine 5s ease-in-out infinite;
+  pointer-events:none;
+  z-index:2;
+}
+
+.founder-photo{
+  height:330px;
+  overflow:hidden;
+  position:relative;
+  background:#050407;
+}
+
+.founder-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .8s cubic-bezier(.16,1,.3,1);
+}
+
+.founder-card:hover .founder-photo img{
+  transform:scale(1.06);
+}
+
+.founder-photo::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 50%,
+      #08050b 100%
+    );
+}
+
+.founder-info{
+  padding:23px 25px 28px;
+  text-align:left;
+  position:relative;
+}
+
+.role{
+  display:inline-block;
+  padding:6px 10px;
+  border:1px solid rgba(255,23,68,.2);
+  border-radius:999px;
+  color:#aaa0ad;
+  background:rgba(255,23,68,.05);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:1.7px;
+}
+
+.founder-info h2{
+  margin-top:10px;
+  font:900 33px Rajdhani,sans-serif;
+}
+
+.founder-info h2 span{
+  background:linear-gradient(90deg,#ff1744,#a000ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.founder-info p{
+  margin-top:8px;
+  color:#756d79;
+  font-size:11px;
+  line-height:1.75;
+}
+
+.story{
+  max-width:900px;
+  margin:25px auto 0;
+  padding:30px;
+  text-align:left;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:22px;
+  background:rgba(255,255,255,.025);
+  animation:fadeUp .8s .4s both;
+  transition:.35s;
+}
+
+.story:hover{
+  transform:translateY(-4px);
+  border-color:rgba(124,0,255,.2);
+}
+
+.story h2{
+  font:900 31px Rajdhani,sans-serif;
+}
+
+.story p{
+  margin-top:12px;
+  color:#7b737f;
+  font-size:12px;
+  line-height:1.9;
+}
+
+.about-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  max-width:900px;
+  margin:15px auto;
+}
+
+.about-stat{
+  padding:20px;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;
+  background:rgba(255,255,255,.018);
+  transition:.35s;
+  animation:fadeUp .7s both;
+}
+
+.about-stat:hover{
+  transform:translateY(-6px);
+  border-color:rgba(124,0,255,.25);
+  box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.about-stat strong{
+  display:block;
+  font:900 24px Rajdhani,sans-serif;
+  background:linear-gradient(90deg,#ff1744,#a000ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.about-stat span{
+  display:block;
+  margin-top:3px;
+  color:#635c68;
+  font-size:9px;
+  letter-spacing:1px;
+}
+
+@keyframes titleIn{
+  from{
+    opacity:0;
+    transform:translateY(35px) scale(.92);
+    filter:blur(8px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+    filter:none;
+  }
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@keyframes cardIn{
+  from{
+    opacity:0;
+    transform:translateY(40px) scale(.95);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@keyframes shine{
+  0%,55%{left:-40%}
+  75%,100%{left:135%}
+}
+
+@media(max-width:700px){
+
+  .about-page{
+    padding-top:125px;
+  }
+
+  .founder-grid{
+    grid-template-columns:1fr;
+  }
+
+  .founder-photo{
+    height:300px;
+  }
+
+  .about-stats{
+    grid-template-columns:1fr;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div id="header"></div>
+
+<main class="about-page">
+
+<section class="about-hero">
+
+<div class="mini">THE PEOPLE BEHIND ZENTRA</div>
+
+<h1>
+BUILT BY
+<span>US.</span>
+</h1>
+
+<p>
+ZentraMC is built around one simple idea —
+to create a Minecraft network that feels alive,
+competitive and worth coming back to.
+</p>
+
+
+<div class="founder-grid">
+
+<!-- PAULHUYAWR -->
+
+<article class="founder-card">
+
+<div class="founder-photo">
+<img src="assets/paulhuyawr.jpg"
+alt="Paulhuyawr / Aevrnn">
+</div>
+
+<div class="founder-info">
+
+<div class="role">
+OWNER • FOUNDER
+</div>
+
+<h2>
+Paulhuyawr
+<span>/ Aevrnn</span>
+</h2>
+
+<p>
+Founder and owner of ZentraMC. The vision,
+development, design and direction behind the
+network building Zentra into a community
+players can proudly call home.
+</p>
+
+</div>
+
+</article>
+
+
+<!-- GULLU -->
+
+<article class="founder-card">
+
+<div class="founder-photo">
+<img src="assets/gullu.jpg"
+alt="Gullu PM Mehra / Playsy">
+</div>
+
+<div class="founder-info">
+
+<div class="role">
+SECOND OWNER
+</div>
+
+<h2>
+Gullu PM Mehra
+<span>/ Playsy Gullu</span>
+</h2>
+
+<p>
+Second owner and a key part of the ZentraMC
+team, helping shape the network, its community
+and the experience players get every time
+they join.
+</p>
+
+</div>
+
+</article>
+
+</div>
+
+
+<div class="story">
+
+<h2>MORE THAN A SERVER.</h2>
+
+<p>
+ZentraMC is a growing Minecraft network focused
+on Survival, Lifesteal, BedWars, SkyWars and
+Practice. We're building the network step by
+step from gameplay and events to community
+features and a proper player experience.
+
+<br><br>
+
+The goal isn't just to make another server.
+It's to build a place where players have reasons
+to return, compete, create memories and become
+part of something bigger.
+</p>
+
+</div>
+
+
+<div class="about-stats">
+
+<div class="about-stat">
+<strong>ZENTRA</strong>
+<span>NETWORK</span>
+</div>
+
+<div class="about-stat">
+<strong>5+</strong>
+<span>GAME MODES</span>
+</div>
+
+<div class="about-stat">
+<strong>∞</strong>
+<span>MORE TO COME</span>
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<div id="footer"></div>
+
+
+<script src="script.js"></script>
+
+<script>
+
+fetch("header.html?v=3", {cache:"no-store"})
+.then(r=>r.text())
+.then(t=>{
+
+document.getElementById("header").innerHTML=t;
+
+if(typeof initNavigation==="function")
+initNavigation();
+
+});
+
+
+fetch("footer.html")
+.then(r=>r.text())
+.then(t=>{
+
+document.getElementById("footer").innerHTML=t;
+
+});
+
+</script>
+
+<script src="auth.js"></script>
+</body>
+</html>

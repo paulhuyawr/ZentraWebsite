@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#05030a">
+
+  <title>ZentraMC — The Realm</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+<!-- =====================================
+     INTRO SCREEN
+     ===================================== -->
+
+<div id="intro">
+
+  <div class="intro-inner">
+
+    <div class="intro-mark">
+      Z
+    </div>
+
+    <div class="intro-title">
+      <span>ZENTRA</span>MC
+    </div>
+
+    <div class="intro-line"></div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================
+     HEADER / SIDEBAR
+     ===================================== -->
+
+<div id="header"></div>
+
+
+
+<!-- =====================================
+     HOME
+     ===================================== -->
+
+<main class="page">
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+
+      <div class="mini">
+        WELCOME TO THE NETWORK
+      </div>
+
+
+      <h1>
+
+        PLAY.<br>
+
+        <span class="gradient">
+          DOMINATE.
+        </span>
+
+      </h1>
+
+
+      <p>
+
+        Welcome to ZentraMC — a Minecraft network
+        built for survival, PvP, competition and
+        unforgettable adventures.
+
+      </p>
+
+
+      <div class="actions">
+
+        <a
+          href="modes.html"
+          class="btn primary"
+        >
+          EXPLORE MODES
+        </a>
+
+
+        <a
+          href="discord.html"
+          class="btn secondary"
+        >
+          JOIN DISCORD
+        </a>
+
+      </div>
+
+
+
+      <!-- SERVER IP -->
+
+      <div class="ip">
+
+        <code>
+          zentramc.loca.lol:20272
+        </code>
+
+        <button
+          class="copy"
+          onclick="copyIP()"
+        >
+          COPY IP
+        </button>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+</main>
+
+
+
+<!-- =====================================
+     FOOTER
+     ===================================== -->
+
+<div id="footer"></div>
+
+
+
+<!-- =====================================
+     LOAD HEADER + FOOTER
+     ===================================== -->
+
+<script>
+
+fetch("header.html")
+
+  .then(response => response.text())
+
+  .then(html => {
+
+    document
+      .getElementById("header")
+      .innerHTML = html;
+
+    initNavigation();
+
+    setActivePage();
+
+  });
+
+
+fetch("footer.html")
+
+  .then(response => response.text())
+
+  .then(html => {
+
+    document
+      .getElementById("footer")
+      .innerHTML = html;
+
+  });
+
+</script>
+
+
+
+<!-- MAIN SCRIPT -->
+
+<script src="script.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZentraMC — Contact Us</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.contact-page{
+    min-height:100vh;
+    padding:145px 20px 90px;
+    position:relative;
+    overflow:hidden;
+}
+
+.contact-container{
+    max-width:850px;
+    margin:auto;
+}
+
+
+/* HERO */
+
+.contact-hero{
+    text-align:center;
+    margin-bottom:45px;
+    animation:heroIn .9s cubic-bezier(.16,1,.3,1);
+}
+
+.contact-tag{
+    display:inline-block;
+    padding:8px 15px;
+    border-radius:50px;
+
+    border:1px solid rgba(255,0,80,.25);
+
+    background:rgba(255,0,80,.035);
+
+    color:#aaa0ad;
+
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.contact-hero h1{
+    margin:20px 0 12px;
+
+    font:
+        900 clamp(50px,9vw,90px)/.9
+        Rajdhani,sans-serif;
+
+    letter-spacing:-3px;
+}
+
+.contact-hero h1 span{
+    background:
+        linear-gradient(
+            90deg,
+            #ff1744,
+            #d000ff,
+            #6a00ff
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+}
+
+.contact-hero p{
+    max-width:600px;
+    margin:auto;
+
+    color:#77707b;
+
+    font-size:12px;
+    line-height:1.8;
+
+    animation:fadeUp .8s .2s both;
+}
+
+
+/* FORM CARD */
+
+.contact-form-card{
+    position:relative;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    border:1px solid rgba(255,255,255,.07);
+
+    background:
+        radial-gradient(
+            circle at 100% 0,
+            rgba(110,0,255,.08),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 0 100%,
+            rgba(255,0,70,.05),
+            transparent 40%
+        ),
+        rgba(255,255,255,.018);
+
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.45);
+
+    animation:
+        formIn .9s .15s
+        cubic-bezier(.16,1,.3,1)
+        both;
+}
+
+.contact-form-card::before{
+    content:"";
+
+    position:absolute;
+
+    top:-100%;
+    left:-40%;
+
+    width:30%;
+    height:300%;
+
+    transform:rotate(25deg);
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(255,255,255,.06),
+            transparent
+        );
+
+    animation:shine 6s infinite;
+
+    pointer-events:none;
+}
+
+
+/* FORM */
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group label{
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#a59da9;
+
+    font-size:9px;
+    font-weight:900;
+
+    letter-spacing:1.3px;
+}
+
+.form-group label span{
+    color:#ff1744;
+}
+
+.form-input,
+.form-select,
+.form-textarea{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:14px 15px;
+
+    border-radius:12px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    outline:none;
+
+    background:
+        rgba(0,0,0,.35);
+
+    color:#eee;
+
+    font-family:inherit;
+
+    font-size:11px;
+
+    transition:
+        border-color .3s,
+        box-shadow .3s,
+        transform .3s;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder{
+    color:#514b55;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus{
+
+    border-color:
+        rgba(180,0,255,.55);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(120,0,255,.07),
+        0 0 25px
+        rgba(120,0,255,.08);
+
+    transform:translateY(-1px);
+}
+
+.form-textarea{
+    min-height:145px;
+    resize:vertical;
+}
+
+.form-select{
+    appearance:auto;
+}
+
+
+/* SUBMIT */
+
+.submit-area{
+    margin-top:8px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
+}
+
+.form-note{
+    color:#57515c;
+
+    font-size:9px;
+
+    line-height:1.6;
+}
+
+.submit-btn{
+
+    border:0;
+
+    cursor:pointer;
+
+    padding:14px 23px;
+
+    border-radius:11px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff1744,
+            #c000ff
+        );
+
+    font-size:10px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    box-shadow:
+        0 10px 35px
+        rgba(190,0,255,.15);
+
+    transition:.3s;
+}
+
+.submit-btn:hover{
+    transform:
+        translateY(-3px)
+        scale(1.02);
+
+    box-shadow:
+        0 15px 45px
+        rgba(190,0,255,.25);
+}
+
+.submit-btn:active{
+    transform:scale(.97);
+}
+
+
+/* SUCCESS */
+
+.success-message{
+    display:none;
+
+    margin-top:20px;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    border:1px solid
+        rgba(0,255,150,.12);
+
+    background:
+        rgba(0,255,150,.025);
+
+    color:#8caa9e;
+
+    font-size:10px;
+
+    text-align:center;
+
+    animation:fadeUp .5s both;
+}
+
+
+/* ANIMATIONS */
+
+@keyframes heroIn{
+    from{
+        opacity:0;
+        transform:
+            translateY(30px)
+            scale(.96);
+        filter:blur(7px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+        filter:none;
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(18px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+@keyframes formIn{
+    from{
+        opacity:0;
+        transform:
+            translateY(35px)
+            scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+@keyframes shine{
+
+    0%,55%{
+        left:-40%;
+    }
+
+    75%,100%{
+        left:135%;
+    }
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .contact-page{
+        padding-top:125px;
+    }
+
+    .contact-form-card{
+        padding:22px;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .submit-area{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .submit-btn{
+        width:100%;
+    }
+
+    .contact-hero h1{
+        font-size:56px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div id="header"></div>
+
+
+<main class="contact-page">
+
+<div class="contact-container">
+
+
+<section class="contact-hero">
+
+<div class="contact-tag">
+ZENTRAMC CONTACT
+</div>
+
+<h1>
+CONTACT
+<span>US.</span>
+</h1>
+
+<p>
+Have a question, issue, suggestion or something you
+want the ZentraMC team to know about? Fill out the form
+below and send us your request.
+</p>
+
+</section>
+
+
+<section class="contact-form-card">
+
+<form action="https://formspree.io/f/mvkoyjnw" method="POST">
+
+
+<!-- NAME + GAME NAME -->
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>
+NAME <span>*</span>
+</label>
+
+<input
+class="form-input"
+type="text"
+name="name"
+placeholder="Enter your name"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+MINECRAFT / GAME NAME <span>*</span>
+</label>
+
+<input
+class="form-input"
+type="text"
+name="game"
+placeholder="Your Minecraft username"
+required
+>
+
+</div>
+
+</div>
+
+
+<!-- GMAIL + PHONE -->
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>
+GMAIL ID <span>*</span>
+</label>
+
+<input
+class="form-input"
+type="email"
+name="email"
+placeholder="example@gmail.com"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+PHONE NUMBER
+<span>(OPTIONAL)</span>
+</label>
+
+<input
+class="form-input"
+type="tel"
+name="phone"
+placeholder="+91 XXXXX XXXXX"
+>
+
+</div>
+
+</div>
+
+
+<!-- REASON -->
+
+<div class="form-group">
+
+<label>
+REASON <span>*</span>
+</label>
+
+<select
+class="form-select"
+name="reason"
+required
+>
+
+<option value="" disabled selected>
+Select a reason
+</option>
+
+<option>General Question</option>
+
+<option>Server Issue</option>
+
+<option>Player Report</option>
+
+<option>Bug Report</option>
+
+<option>Ban / Punishment Appeal</option>
+
+<option>Staff Application</option>
+
+<option>Partnership</option>
+
+<option>Suggestion</option>
+
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+<!-- MESSAGE -->
+
+<div class="form-group">
+
+<label>
+MESSAGE <span>*</span>
+</label>
+
+<textarea
+class="form-textarea"
+name="message"
+placeholder="Tell us what you need help with..."
+required
+></textarea>
+
+</div>
+
+
+<!-- SUBMIT -->
+
+<div class="submit-area">
+
+<div class="form-note">
+Please provide accurate information so our team
+can properly respond to your request.
+</div>
+
+<button
+class="submit-btn"
+type="submit"
+>
+SEND REQUEST →
+</button>
+
+</div>
+
+
+<div
+id="successMessage"
+class="success-message"
+>
+✓ Your request has been prepared successfully.
+The team will review your message.
+</div>
+
+
+</form>
+
+</section>
+
+
+</div>
+
+</main>
+
+
+<div id="footer"></div>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+/* HEADER */
+
+fetch("header.html")
+.then(r => r.text())
+.then(t => {
+
+    document.getElementById("header").innerHTML = t;
+
+    if(typeof initNavigation === "function"){
+        initNavigation();
+    }
+
+});
+
+
+/* FOOTER */
+
+fetch("footer.html")
+.then(r => r.text())
+.then(t => {
+
+    document.getElementById("footer").innerHTML = t;
+
+});
+
+
+/* FORM */
+
+document
+.getElementById("contactForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const button =
+        document.querySelector(".submit-btn");
+
+    const success =
+        document.getElementById("successMessage");
+
+    button.textContent = "SENDING...";
+
+    button.disabled = true;
+
+    setTimeout(() => {
+
+        button.textContent = "REQUEST SENT ✓";
+
+        success.style.display = "block";
+
+        this.reset();
+
+    }, 900);
+
+});
+
+</script>
+
+
+<script src="auth.js"></script>
+</body>
+</html>

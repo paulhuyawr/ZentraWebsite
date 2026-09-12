@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ZentraMC — Vote</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    .vote-page{
+      max-width:900px;
+      margin:auto;
+    }
+
+    .vote-list{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:15px;
+    }
+
+    .vote-card{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      padding:20px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      background:rgba(255,255,255,.035);
+      transition:.3s;
+    }
+
+    .vote-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(190,70,255,.35);
+      background:rgba(165,0,255,.045);
+    }
+
+    .vote-number{
+      min-width:45px;
+      height:45px;
+      display:grid;
+      place-items:center;
+      border-radius:13px;
+      background:linear-gradient(
+        135deg,
+        rgba(165,0,255,.2),
+        rgba(255,90,145,.1)
+      );
+      color:#c75aff;
+      font:800 18px Rajdhani,sans-serif;
+    }
+
+    .vote-info{
+      flex:1;
+    }
+
+    .vote-info h3{
+      font:700 20px Rajdhani,sans-serif;
+    }
+
+    .vote-info p{
+      margin-top:4px;
+      color:#716b77;
+      font-size:10px;
+    }
+
+    .vote-button{
+      white-space:nowrap;
+    }
+
+    .vote-reward{
+      margin-top:40px;
+      padding:25px;
+      text-align:center;
+      border:1px solid rgba(190,70,255,.15);
+      border-radius:18px;
+      background:rgba(165,0,255,.035);
+    }
+
+    .vote-reward h2{
+      font:800 27px Rajdhani,sans-serif;
+    }
+
+    .vote-reward p{
+      margin-top:7px;
+      color:#77717d;
+      font-size:12px;
+    }
+
+    @media(max-width:700px){
+
+      .vote-list{
+        grid-template-columns:1fr;
+      }
+
+      .vote-card{
+        padding:16px;
+      }
+
+      .vote-button{
+        padding:11px 13px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+
+<div id="header"></div>
+
+
+<main class="page">
+
+  <div class="page-title">
+
+    <div class="mini">
+      SUPPORT ZENTRAMC
+    </div>
+
+    <h1>
+      VOTE FOR
+      <span class="gradient">ZENTRA</span>
+    </h1>
+
+    <p>
+      Support ZentraMC by voting on server lists.
+      Every vote helps us grow the network.
+    </p>
+
+  </div>
+
+
+  <div class="vote-page">
+
+    <div class="vote-list">
+
+
+      <div class="vote-card">
+        <div class="vote-logo">
+          <img
+            src="https://logo.clearbit.com/minecraft-server-list.com"
+            alt="minecraft-server-list.com logo"
+            onerror="this.style.display='none';this.parentElement.classList.add('fallback')"
+          >
+        </div>
+        <div class="vote-info">
+          <h3>Minecraft Server List</h3>
+          <p>minecraft-server-list.com</p>
+        </div>
+        <a class="btn primary vote-button"
+           href="https://minecraft-server-list.com/server/522325/vote/"
+           target="_blank" rel="noopener">
+          VOTE
+        </a>
+      </div>
+
+
+      <div class="vote-card">
+        <div class="vote-logo">
+          <img
+            src="https://logo.clearbit.com/minecraft.buzz"
+            alt="minecraft.buzz logo"
+            onerror="this.style.display='none';this.parentElement.classList.add('fallback')"
+          >
+        </div>
+        <div class="vote-info">
+          <h3>Minecraft.Buzz</h3>
+          <p>minecraft.buzz</p>
+        </div>
+        <a class="btn primary vote-button"
+           href="https://minecraft.buzz/vote/zentramc"
+           target="_blank" rel="noopener">
+          VOTE
+        </a>
+      </div>
+
+
+      <div class="vote-card">
+        <div class="vote-logo">
+          <img
+            src="https://logo.clearbit.com/minecraftservers.org"
+            alt="minecraftservers.org logo"
+            onerror="this.style.display='none';this.parentElement.classList.add('fallback')"
+          >
+        </div>
+        <div class="vote-info">
+          <h3>MinecraftServers.org</h3>
+          <p>minecraftservers.org</p>
+        </div>
+        <a class="btn primary vote-button"
+           href="https://minecraftservers.org/vote/691253"
+           target="_blank" rel="noopener">
+          VOTE
+        </a>
+      </div>
+
+
+      <div class="vote-card">
+        <div class="vote-logo">
+          <img
+            src="https://logo.clearbit.com/mc-servers.com"
+            alt="mc-servers.com logo"
+            onerror="this.style.display='none';this.parentElement.classList.add('fallback')"
+          >
+        </div>
+        <div class="vote-info">
+          <h3>MC-Servers</h3>
+          <p>mc-servers.com</p>
+        </div>
+        <a class="btn primary vote-button"
+           href="https://mc-servers.com/vote/6778"
+           target="_blank" rel="noopener">
+          VOTE
+        </a>
+      </div>
+
+
+      <div class="vote-card">
+        <div class="vote-logo">
+          <img
+            src="https://logo.clearbit.com/craftlist.org"
+            alt="craftlist.org logo"
+            onerror="this.style.display='none';this.parentElement.classList.add('fallback')"
+          >
+        </div>
+        <div class="vote-info">
+          <h3>CraftList</h3>
+          <p>craftlist.org</p>
+        </div>
+        <a class="btn primary vote-button"
+           href="https://craftlist.org/zentramc#vote"
+           target="_blank" rel="noopener">
+          VOTE
+        </a>
+      </div>
+
+
+      <div class="vote-card">
+        <div class="vote-logo">
+          <img
+            src="https://logo.clearbit.com/minecraft-mp.com"
+            alt="minecraft-mp.com logo"
+            onerror="this.style.display='none';this.parentElement.classList.add('fallback')"
+          >
+        </div>
+        <div class="vote-info">
+          <h3>Minecraft-MP</h3>
+          <p>minecraft-mp.com</p>
+        </div>
+        <a class="btn primary vote-button"
+           href="https://minecraft-mp.com/server/363634/vote/"
+           target="_blank" rel="noopener">
+          VOTE
+        </a>
+      </div>
+
+
+      <div class="vote-card">
+        <div class="vote-logo">
+          <img
+            src="https://logo.clearbit.com/minecraft-serverlist.com"
+            alt="minecraft-serverlist.com logo"
+            onerror="this.style.display='none';this.parentElement.classList.add('fallback')"
+          >
+        </div>
+        <div class="vote-info">
+          <h3>Minecraft ServerList</h3>
+          <p>minecraft-serverlist.com</p>
+        </div>
+        <a class="btn primary vote-button"
+           href="https://minecraft-serverlist.com/server/6005/vote"
+           target="_blank" rel="noopener">
+          VOTE
+        </a>
+      </div>
+
+
+      <div class="vote-card">
+        <div class="vote-logo">
+          <img
+            src="https://logo.clearbit.com/minelist.net"
+            alt="minelist.net logo"
+            onerror="this.style.display='none';this.parentElement.classList.add('fallback')"
+          >
+        </div>
+        <div class="vote-info">
+          <h3>MineList</h3>
+          <p>minelist.net</p>
+        </div>
+        <a class="btn primary vote-button"
+           href="https://minelist.net/vote/5351"
+           target="_blank" rel="noopener">
+          VOTE
+        </a>
+      </div>
+
+
+      <div class="vote-card">
+        <div class="vote-logo">
+          <img
+            src="https://logo.clearbit.com/topg.org"
+            alt="topg.org logo"
+            onerror="this.style.display='none';this.parentElement.classList.add('fallback')"
+          >
+        </div>
+        <div class="vote-info">
+          <h3>TopG</h3>
+          <p>topg.org</p>
+        </div>
+        <a class="btn primary vote-button"
+           href="https://topg.org/minecraft-servers/server-684862"
+           target="_blank" rel="noopener">
+          VOTE
+        </a>
+      </div>
+
+
+      <div class="vote-card">
+        <div class="vote-logo">
+          <img
+            src="https://logo.clearbit.com/findmcserver.com"
+            alt="findmcserver.com logo"
+            onerror="this.style.display='none';this.parentElement.classList.add('fallback')"
+          >
+        </div>
+        <div class="vote-info">
+          <h3>FindMCServer</h3>
+          <p>findmcserver.com</p>
+        </div>
+        <a class="btn primary vote-button"
+           href="https://findmcserver.com/server/jWS13x5G05?vote=true"
+           target="_blank" rel="noopener">
+          VOTE
+        </a>
+      </div>
+
+
+    </div>
+
+
+    <div class="vote-reward">
+
+      <h2>🎁 VOTE REWARDS</h2>
+
+      <p>
+        Vote rewards and keys will be connected to the
+        ZentraMC server later.
+      </p>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<div id="footer"></div>
+
+
+<script>
+
+fetch("header.html?v=3", {cache:"no-store"})
+.then(r => r.text())
+.then(t => {
+
+  document.getElementById("header").innerHTML = t;
+
+  initNavigation();
+  setActivePage();
+
+});
+
+
+fetch("footer.html")
+.then(r => r.text())
+.then(t => {
+
+  document.getElementById("footer").innerHTML = t;
+
+});
+
+</script>
+
+
+<script src="script.js"></script>
+
+<script src="auth.js"></script>
+</body>
+</html>

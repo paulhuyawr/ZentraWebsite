@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ZentraMC — Store</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    /* =========================
+       STORE PAGE
+       ========================= */
+
+    .store-controls{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      margin:-25px auto 45px;
+    }
+
+    .store-tab{
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.035);
+      color:#8d8794;
+      padding:12px 22px;
+      border-radius:11px;
+      cursor:pointer;
+      font-size:12px;
+      font-weight:800;
+      transition:.25s;
+    }
+
+    .store-tab:hover,
+    .store-tab.active{
+      color:#fff;
+      border-color:rgba(190,70,255,.35);
+      background:linear-gradient(
+        135deg,
+        rgba(165,0,255,.18),
+        rgba(255,90,145,.08)
+      );
+      box-shadow:0 0 25px rgba(165,0,255,.1);
+    }
+
+
+    /* CURRENCY */
+
+    .currency-box{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:8px;
+      margin-bottom:35px;
+    }
+
+    .currency{
+      padding:8px 13px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.025);
+      color:#77717d;
+      cursor:pointer;
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .currency.active{
+      color:#fff;
+      background:#7200bd;
+    }
+
+
+    /* RANK GRID */
+
+    .rank-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:14px;
+    }
+
+    .rank-card{
+      position:relative;
+      overflow:hidden;
+      min-height:370px;
+      padding:25px 20px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.055),
+          rgba(255,255,255,.015)
+        );
+      transition:.35s;
+    }
+
+    .rank-card:hover{
+      transform:translateY(-8px);
+      border-color:rgba(190,70,255,.4);
+      box-shadow:0 20px 50px rgba(0,0,0,.3);
+    }
+
+    .rank-card.featured{
+      border-color:rgba(200,70,255,.32);
+      box-shadow:
+        0 0 35px rgba(165,0,255,.08),
+        inset 0 0 35px rgba(165,0,255,.025);
+    }
+
+    .rank-card.featured:before{
+      content:"POPULAR";
+      position:absolute;
+      top:15px;
+      right:-31px;
+      transform:rotate(45deg);
+      width:120px;
+      text-align:center;
+      padding:5px;
+      font-size:8px;
+      font-weight:900;
+      letter-spacing:1px;
+      background:linear-gradient(90deg,#9200ff,#ff568f);
+    }
+
+    .rank-icon{
+      width:62px;
+      height:62px;
+      margin-bottom:22px;
+      display:grid;
+      place-items:center;
+      border-radius:17px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(165,0,255,.18),
+          rgba(255,100,150,.08)
+        );
+      border:1px solid rgba(200,80,255,.15);
+      font-size:28px;
+    }
+
+    .rank-name{
+      font:800 27px Rajdhani,sans-serif;
+      letter-spacing:.5px;
+    }
+
+    .rank-type{
+      margin-top:3px;
+      color:#77717d;
+      font-size:10px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .rank-price{
+      margin-top:25px;
+      font:800 29px Rajdhani,sans-serif;
+    }
+
+    .rank-price small{
+      color:#77717d;
+      font:500 10px Inter,sans-serif;
+    }
+
+    .usd{
+      color:#756d7d;
+      font-size:10px;
+      margin-top:3px;
+    }
+
+    .rank-line{
+      height:1px;
+      background:rgba(255,255,255,.07);
+      margin:22px 0;
+    }
+
+    .rank-feature{
+      color:#99929f;
+      font-size:11px;
+      margin:10px 0;
+    }
+
+    .rank-feature:before{
+      content:"✓";
+      color:#c252ff;
+      font-weight:900;
+      margin-right:8px;
+    }
+
+    .buy{
+      width:100%;
+      margin-top:15px;
+      text-align:center;
+      border:0;
+    }
+
+
+    /* COINS */
+
+    .coin-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .coin-card{
+      padding:30px 22px;
+      text-align:center;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.035);
+      transition:.3s;
+    }
+
+    .coin-card:hover{
+      transform:translateY(-7px);
+      border-color:rgba(190,70,255,.3);
+    }
+
+    .coin-icon{
+      font-size:45px;
+      margin-bottom:17px;
+      filter:drop-shadow(0 0 15px rgba(255,190,0,.15));
+    }
+
+    .coin-amount{
+      font:800 27px Rajdhani,sans-serif;
+    }
+
+    .coin-label{
+      margin-top:3px;
+      color:#77717d;
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:1px;
+    }
+
+    .coin-price{
+      margin-top:20px;
+      font:800 24px Rajdhani,sans-serif;
+    }
+
+    .coin-usd{
+      color:#716b77;
+      font-size:10px;
+      margin-top:2px;
+    }
+
+
+    /* HIDDEN */
+
+    .store-section{
+      display:none;
+    }
+
+    .store-section.active{
+      display:block;
+    }
+
+
+    /* RESPONSIVE */
+
+    @media(max-width:1050px){
+
+      .rank-grid{
+        grid-template-columns:repeat(3,1fr);
+      }
+
+      .coin-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+    }
+
+    @media(max-width:700px){
+
+      .rank-grid{
+        grid-template-columns:1fr;
+      }
+
+      .coin-grid{
+        grid-template-columns:1fr;
+      }
+
+      .store-controls{
+        flex-wrap:wrap;
+      }
+
+      .rank-card{
+        min-height:auto;
+      }
+
+    }
+
+  </style>
+
+
+
+<style>
+
+/* =========================================
+   ZENTRAMC STORE BUY POPUP
+   ========================================= */
+
+.zentra-buy-overlay{
+  position:fixed;
+  inset:0;
+  z-index:999999;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(165,0,255,.12),
+      transparent 45%
+    ),
+    rgba(0,0,0,.82);
+
+  backdrop-filter:blur(14px);
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:
+    opacity .35s ease;
+}
+
+
+.zentra-buy-overlay.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+
+.zentra-buy-popup{
+
+  position:relative;
+
+  width:min(
+    520px,
+    calc(100vw - 34px)
+  );
+
+  overflow:hidden;
+
+  padding:42px 34px 34px;
+
+  text-align:center;
+
+  border-radius:26px;
+
+  border:
+    1px solid
+    rgba(191,70,255,.32);
+
+  background:
+
+    radial-gradient(
+      circle at 50% -20%,
+      rgba(255,0,100,.16),
+      transparent 45%
+    ),
+
+    linear-gradient(
+      145deg,
+      rgba(24,14,30,.98),
+      rgba(8,7,12,.98)
+    );
+
+  box-shadow:
+    0 0 100px
+    rgba(145,0,255,.20),
+
+    0 25px 80px
+    rgba(0,0,0,.7);
+
+  transform:
+    translateY(35px)
+    scale(.93);
+
+  transition:
+    transform .55s
+    cubic-bezier(.16,1,.3,1);
+
+}
+
+
+.zentra-buy-overlay.active
+.zentra-buy-popup{
+
+  transform:
+    translateY(0)
+    scale(1);
+
+}
+
+
+.zentra-buy-glow{
+
+  position:absolute;
+
+  width:180px;
+  height:180px;
+
+  top:-120px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:#a500ff;
+
+  opacity:.12;
+
+  filter:blur(70px);
+
+  pointer-events:none;
+
+}
+
+
+.zentra-buy-icon{
+
+  position:relative;
+
+  width:64px;
+  height:64px;
+
+  margin:
+    0 auto 17px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:20px;
+
+  font-size:27px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff005d,
+      #a500ff
+    );
+
+  box-shadow:
+    0 0 35px
+    rgba(210,0,255,.32);
+
+  animation:
+    zentraIconPulse 1.8s
+    infinite ease-in-out;
+
+}
+
+
+.zentra-buy-label{
+
+  color:#8c8293;
+
+  font-size:9px;
+
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  margin-bottom:9px;
+
+}
+
+
+.zentra-buy-popup h2{
+
+  margin:0;
+
+  font-size:25px;
+
+  font-weight:900;
+
+  letter-spacing:.3px;
+
+}
+
+
+.zentra-buy-popup h2 span{
+
+  display:block;
+
+  margin-top:3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff176f,
+      #a500ff
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  color:transparent;
+
+}
+
+
+.zentra-buy-popup p{
+
+  margin:
+    17px auto 20px;
+
+  max-width:365px;
+
+  color:#9c95a3;
+
+  font-size:12px;
+
+  line-height:1.65;
+
+}
+
+
+.zentra-buy-popup p strong{
+
+  color:#eee;
+
+}
+
+
+.zentra-count{
+
+  font-size:38px;
+
+  line-height:1;
+
+  font-weight:900;
+
+  margin:8px 0 15px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff005d,
+      #a500ff
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  color:transparent;
+
+  text-shadow:
+    0 0 25px
+    rgba(200,0,255,.25);
+
+}
+
+
+.zentra-progress{
+
+  width:100%;
+  height:5px;
+
+  overflow:hidden;
+
+  border-radius:20px;
+
+  background:
+    rgba(255,255,255,.07);
+
+}
+
+
+.zentra-progress-bar{
+
+  width:100%;
+  height:100%;
+
+  transform-origin:left;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff005d,
+      #a500ff
+    );
+
+  box-shadow:
+    0 0 16px
+    rgba(200,0,255,.7);
+
+}
+
+
+.zentra-redirect{
+
+  margin-top:13px;
+
+  color:#68616e;
+
+  font-size:10px;
+
+  letter-spacing:.5px;
+
+}
+
+
+.zentra-cancel{
+
+  margin-top:17px;
+
+  padding:7px 13px;
+
+  border:0;
+
+  background:transparent;
+
+  color:#625b68;
+
+  font-size:10px;
+
+  font-weight:800;
+
+  letter-spacing:1px;
+
+  cursor:pointer;
+
+  transition:.2s;
+
+}
+
+
+.zentra-cancel:hover{
+
+  color:#fff;
+
+}
+
+
+@keyframes zentraBuyProgress{
+
+  from{
+    transform:scaleX(1);
+  }
+
+  to{
+    transform:scaleX(0);
+  }
+
+}
+
+
+@keyframes zentraIconPulse{
+
+  0%,100%{
+    transform:scale(1);
+    box-shadow:
+      0 0 30px
+      rgba(210,0,255,.25);
+  }
+
+  50%{
+    transform:scale(1.07);
+    box-shadow:
+      0 0 45px
+      rgba(210,0,255,.42);
+  }
+
+}
+
+
+@media(max-width:500px){
+
+  .zentra-buy-popup{
+    padding:
+      28px 20px 23px;
+  }
+
+  .zentra-buy-popup h2{
+    font-size:22px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div id="header"></div>
+
+
+
+<main class="page">
+
+
+  <!-- TITLE -->
+
+  <div class="page-title">
+
+    <div class="mini">
+      ZENTRAMC STORE
+    </div>
+
+    <h1>
+      UPGRADE YOUR
+      <span class="gradient">REALM</span>
+    </h1>
+
+    <p>
+      Get exclusive ranks and coins to enhance
+      your ZentraMC experience.
+    </p>
+
+  </div>
+
+
+
+  <!-- STORE TABS -->
+
+  <div class="store-controls">
+
+    <button
+      class="store-tab active"
+      onclick="showStore('ranks',this)"
+    >
+      🏆 RANKS
+    </button>
+
+    <button
+      class="store-tab"
+      onclick="showStore('coins',this)"
+    >
+      🪙 COINS
+    </button>
+
+
+
+  </div>
+
+
+
+  <!-- CURRENCY -->
+
+  <div class="currency-box">
+
+    <button
+      class="currency active"
+      onclick="setCurrency('INR',this)"
+    >
+      ₹ INR
+    </button>
+
+    <button
+      class="currency"
+      onclick="setCurrency('USD',this)"
+    >
+      $ USD
+    </button>
+
+  </div>
+
+
+
+  <!-- =========================
+       RANKS
+       ========================= -->
+
+  <section
+    id="ranks"
+    class="store-section active"
+  >
+
+    <div class="rank-grid">
+
+
+      <!-- BONELET -->
+
+      <div class="rank-card">
+
+        <div class="rank-icon">
+          🦴
+        </div>
+
+        <div class="rank-name">
+          Bonelet
+        </div>
+
+        <div class="rank-type">
+          Permanent · Free
+        </div>
+
+        <div
+          class="rank-price"
+          data-inr="FREE"
+          data-usd="FREE"
+        >
+          FREE
+        </div>
+
+        <div class="rank-line"></div>
+
+        <div class="rank-feature">
+          Starter Rank
+        </div>
+
+        <div class="rank-feature">
+          Basic perks
+        </div>
+
+        <div class="rank-feature">
+          Join the network
+        </div>
+
+        <button class="btn secondary buy">
+          OWNED
+        </button>
+
+      </div>
+
+
+
+      <!-- CUPCAKE -->
+
+      <div class="rank-card">
+
+        <div class="rank-icon">
+          🧁
+        </div>
+
+        <div class="rank-name">
+          Cupcake
+        </div>
+
+        <div class="rank-type">
+          Monthly
+        </div>
+
+        <div
+          class="rank-price"
+          data-inr="₹80"
+          data-usd="$0.95"
+        >
+          ₹80
+          <small>/month</small>
+        </div>
+
+        <div class="usd">
+          ≈ $0.95 USD
+        </div>
+
+        <div class="rank-line"></div>
+
+        <div class="rank-feature">
+          Cupcake rank
+        </div>
+
+        <div class="rank-feature">
+          Exclusive perks
+        </div>
+
+        <div class="rank-feature">
+          Monthly rank
+        </div>
+
+        <button class="btn primary buy">
+          BUY NOW
+        </button>
+
+      </div>
+
+
+
+      <!-- VIP -->
+
+      <div class="rank-card featured">
+
+        <div class="rank-icon">
+          💎
+        </div>
+
+        <div class="rank-name">
+          VIP
+        </div>
+
+        <div class="rank-type">
+          Monthly
+        </div>
+
+        <div
+          class="rank-price"
+          data-inr="₹120"
+          data-usd="$1.43"
+        >
+          ₹120
+          <small>/month</small>
+        </div>
+
+        <div class="usd">
+          ≈ $1.43 USD
+        </div>
+
+        <div class="rank-line"></div>
+
+        <div class="rank-feature">
+          VIP rank
+        </div>
+
+        <div class="rank-feature">
+          Premium perks
+        </div>
+
+        <div class="rank-feature">
+          Monthly rank
+        </div>
+
+        <button class="btn primary buy">
+          BUY NOW
+        </button>
+
+      </div>
+
+
+
+      <!-- LEGENDARY -->
+
+      <div class="rank-card">
+
+        <div class="rank-icon">
+          👑
+        </div>
+
+        <div class="rank-name">
+          Legendary
+        </div>
+
+        <div class="rank-type">
+          Monthly
+        </div>
+
+        <div
+          class="rank-price"
+          data-inr="₹200"
+          data-usd="$2.38"
+        >
+          ₹200
+          <small>/month</small>
+        </div>
+
+        <div class="usd">
+          ≈ $2.38 USD
+        </div>
+
+        <div class="rank-line"></div>
+
+        <div class="rank-feature">
+          Legendary rank
+        </div>
+
+        <div class="rank-feature">
+          Exclusive perks
+        </div>
+
+        <div class="rank-feature">
+          Monthly rank
+        </div>
+
+        <button class="btn primary buy">
+          BUY NOW
+        </button>
+
+      </div>
+
+
+
+      <!-- ZENTRA -->
+
+      <div class="rank-card featured">
+
+        <div class="rank-icon">
+          ⚡
+        </div>
+
+        <div class="rank-name">
+          Zentra
+        </div>
+
+        <div class="rank-type">
+          Monthly
+        </div>
+
+        <div
+          class="rank-price"
+          data-inr="₹250"
+          data-usd="$2.98"
+        >
+          ₹250
+          <small>/month</small>
+        </div>
+
+        <div class="usd">
+          ≈ $2.98 USD
+        </div>
+
+        <div class="rank-line"></div>
+
+        <div class="rank-feature">
+          Zentra rank
+        </div>
+
+        <div class="rank-feature">
+          Highest tier
+        </div>
+
+        <div class="rank-feature">
+          Exclusive perks
+        </div>
+
+        <button class="btn primary buy">
+          BUY NOW
+        </button>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       COINS
+       ========================= -->
+
+  <section
+    id="coins"
+    class="store-section"
+  >
+
+    <div class="coin-grid">
+
+
+      <div class="coin-card">
+
+        <div class="coin-icon">
+          🪙
+        </div>
+
+        <div class="coin-amount">
+          2,000
+        </div>
+
+        <div class="coin-label">
+          ZENTRA COINS
+        </div>
+
+        <div
+          class="coin-price"
+          data-inr="₹99"
+          data-usd="$1.18"
+        >
+          ₹99
+        </div>
+
+        <div class="coin-usd">
+          ≈ $1.18 USD
+        </div>
+
+        <br>
+
+        <button class="btn primary buy">
+          BUY COINS
+        </button>
+
+      </div>
+
+
+
+      <div class="coin-card">
+
+        <div class="coin-icon">
+          🪙
+        </div>
+
+        <div class="coin-amount">
+          5,000
+        </div>
+
+        <div class="coin-label">
+          ZENTRA COINS
+        </div>
+
+        <div
+          class="coin-price"
+          data-inr="₹179"
+          data-usd="$2.13"
+        >
+          ₹179
+        </div>
+
+        <div class="coin-usd">
+          ≈ $2.13 USD
+        </div>
+
+        <br>
+
+        <button class="btn primary buy">
+          BUY COINS
+        </button>
+
+      </div>
+
+
+
+      <div class="coin-card">
+
+        <div class="coin-icon">
+          🪙
+        </div>
+
+        <div class="coin-amount">
+          10,000
+        </div>
+
+        <div class="coin-label">
+          ZENTRA COINS
+        </div>
+
+        <div
+          class="coin-price"
+          data-inr="₹269"
+          data-usd="$3.20"
+        >
+          ₹269
+        </div>
+
+        <div class="coin-usd">
+          ≈ $3.20 USD
+        </div>
+
+        <br>
+
+        <button class="btn primary buy">
+          BUY COINS
+        </button>
+
+      </div>
+
+
+
+      <div class="coin-card">
+
+        <div class="coin-icon">
+          🪙
+        </div>
+
+        <div class="coin-amount">
+          20,000
+        </div>
+
+        <div class="coin-label">
+          ZENTRA COINS
+        </div>
+
+        <div
+          class="coin-price"
+          data-inr="₹429"
+          data-usd="$5.11"
+        >
+          ₹429
+        </div>
+
+        <div class="coin-usd">
+          ≈ $5.11 USD
+        </div>
+
+        <br>
+
+        <button class="btn primary buy">
+          BUY COINS
+        </button>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+
+<div id="footer"></div>
+
+
+
+<script>
+
+/* LOAD HEADER */
+
+fetch("header.html?v=3", {cache:"no-store"})
+.then(response => response.text())
+.then(html => {
+
+  document.getElementById("header").innerHTML = html;
+
+  initNavigation();
+
+  setActivePage();
+
+});
+
+
+
+/* LOAD FOOTER */
+
+fetch("footer.html")
+.then(response => response.text())
+.then(html => {
+
+  document.getElementById("footer").innerHTML = html;
+
+});
+
+
+
+/* SIDEBAR */
+
+function initNavigation(){
+
+  const menu =
+    document.querySelector(".menu");
+
+  const close =
+    document.querySelector(".close");
+
+  const overlay =
+    document.querySelector(".overlay");
+
+  const sidebar =
+    document.querySelector(".sidebar");
+
+
+  if(!menu) return;
+
+
+  menu.onclick = () => {
+
+    sidebar.classList.add("open");
+
+    overlay.classList.add("open");
+
+  };
+
+
+  close.onclick = () => {
+
+    sidebar.classList.remove("open");
+
+    overlay.classList.remove("open");
+
+  };
+
+
+  overlay.onclick = () => {
+
+    sidebar.classList.remove("open");
+
+    overlay.classList.remove("open");
+
+  };
+
+}
+
+
+
+/* STORE TABS */
+
+function showStore(type,button){
+
+  document
+    .querySelectorAll(".store-section")
+    .forEach(section => {
+
+      section.classList.remove("active");
+
+    });
+
+
+  document
+    .getElementById(type)
+    .classList.add("active");
+
+
+  document
+    .querySelectorAll(".store-tab")
+    .forEach(tab => {
+
+      tab.classList.remove("active");
+
+    });
+
+
+  button.classList.add("active");
+
+}
+
+
+
+/* CURRENCY */
+
+function setCurrency(currency,button){
+
+  document
+    .querySelectorAll(".currency")
+    .forEach(btn => {
+
+      btn.classList.remove("active");
+
+    });
+
+
+  button.classList.add("active");
+
+
+  document
+    .querySelectorAll("[data-inr]")
+    .forEach(element => {
+
+      const value =
+        element.dataset[currency.toLowerCase()];
+
+      if(!value) return;
+
+
+      if(element.classList.contains("rank-price")){
+
+        if(value === "FREE"){
+
+          element.innerHTML = "FREE";
+
+        }else{
+
+          element.innerHTML =
+            value +
+            ' <small>/month</small>';
+
+        }
+
+      }else{
+
+        element.innerText = value;
+
+      }
+
+    });
+
+
+  /* USD labels */
+
+  document
+    .querySelectorAll(".usd,.coin-usd")
+    .forEach(element => {
+
+      if(currency === "USD"){
+
+        element.style.display="none";
+
+      }else{
+
+        element.style.display="block";
+
+      }
+
+    });
+
+}
+
+
+
+/* BUY BUTTON SYSTEM */
+
+const RANKS_STORE_URL =
+  "https://zentramc-store.tebex.store/category/ranks";
+
+const COINS_STORE_URL =
+  "https://zentramc-store.tebex.store/category/coins";
+
+
+function openBuyPopup(type){
+
+  const url =
+    type === "coins"
+      ? COINS_STORE_URL
+      : RANKS_STORE_URL;
+
+
+  const old =
+    document.getElementById("zentraBuyOverlay");
+
+  if(old) old.remove();
+
+
+  const overlay =
+    document.createElement("div");
+
+  overlay.id =
+    "zentraBuyOverlay";
+
+  overlay.className =
+    "zentra-buy-overlay";
+
+
+  overlay.innerHTML = `
+
+    <div class="zentra-buy-popup">
+
+      <div class="zentra-buy-glow"></div>
+
+      <div class="zentra-buy-icon">
+        ✦
+      </div>
+
+      <div class="zentra-buy-label">
+        ZENTRAMC STORE
+      </div>
+
+      <h2>
+        CHECK YOUR
+        <span>GAME NAME</span>
+      </h2>
+
+      <p>
+        Enter your <strong>Minecraft Game Name</strong>
+        and <strong>Email</strong> correctly when you log in.
+        <br><br>
+        Double-check them before purchasing.
+      </p>
+
+      <div class="zentra-count">
+        5
+      </div>
+
+      <div class="zentra-progress">
+        <div class="zentra-progress-bar"></div>
+      </div>
+
+      <div class="zentra-redirect">
+        Redirecting to checkout...
+      </div>
+
+      <button
+        class="zentra-cancel"
+        id="zentraCancelBuy">
+        CANCEL
+      </button>
+
+    </div>
+  `;
+
+
+  document.body.appendChild(overlay);
+
+
+  requestAnimationFrame(() => {
+    overlay.classList.add("active");
+  });
+
+
+  const count =
+    overlay.querySelector(".zentra-count");
+
+  const bar =
+    overlay.querySelector(".zentra-progress-bar");
+
+
+  let seconds = 10;
+
+
+  bar.style.animation =
+    "zentraBuyProgress 10s linear forwards";
+
+
+  const timer =
+    setInterval(() => {
+
+      seconds--;
+
+      count.textContent =
+        seconds;
+
+
+      if(seconds <= 0){
+
+        clearInterval(timer);
+
+        window.location.href =
+          url;
+
+      }
+
+    },1000);
+
+
+  document
+    .getElementById("zentraCancelBuy")
+    .onclick = () => {
+
+      clearInterval(timer);
+
+      overlay.classList.remove("active");
+
+      setTimeout(() => {
+        overlay.remove();
+      },300);
+
+    };
+
+}
+
+
+
+/* BUY CLICK */
+
+document.addEventListener("click", async event => {
+
+  const button =
+    event.target.closest(".buy");
+
+  if(!button || button.disabled)
+    return;
+
+
+  event.preventDefault();
+  event.stopImmediatePropagation();
+
+
+  /*
+    LOGIN CHECK
+    auth.js already creates the
+    Supabase client.
+  */
+
+  if(typeof sb !== "undefined" && sb){
+
+    const {
+      data: { session }
+    } = await sb.auth.getSession();
+
+
+    if(!session){
+
+      window.location.href =
+        "login.html?redirect=store.html";
+
+      return;
+
+    }
+
+  }
+
+
+  /*
+    Determine category
+  */
+
+  const card =
+    button.closest(".rank-card,.coin-card");
+
+
+  const isCoins =
+    !!button.closest(".coin-card");
+
+
+  openBuyPopup(
+    isCoins
+      ? "coins"
+      : "ranks"
+  );
+
+});
+
+</script>
+
+
+<script src="script.js"></script>
+
+<script src="auth.js"></script>
+</body>
+</html>

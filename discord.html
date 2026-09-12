@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ZentraMC — Discord</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+
+<main class="discord-page">
+
+  <section class="discord-hero">
+
+    <div class="discord-orb orb-one"></div>
+    <div class="discord-orb orb-two"></div>
+
+    <div class="discord-badge">
+      <span class="discord-live-dot"></span>
+      ZENTRAMC COMMUNITY
+    </div>
+
+    <h1>
+      JOIN THE
+      <span>COMMUNITY.</span>
+    </h1>
+
+    <p>
+      Meet the ZentraMC community, get updates,
+      find teammates and stay connected with the network.
+    </p>
+
+    <div class="discord-card">
+
+      <div class="discord-icon">
+        <span>◉</span>
+      </div>
+
+      <div class="discord-card-content">
+
+        <div class="discord-card-title">
+          <h2>ZentraMC Discord</h2>
+
+          <div class="discord-online">
+            <span></span>
+            COMMUNITY
+          </div>
+        </div>
+
+        <p>
+          Official community hub for ZentraMC.
+        </p>
+
+        <div class="discord-invite">
+          <span id="discordLink">
+            discord.gg/CeWyyEYgWj
+          </span>
+
+          <button id="copyDiscord">
+            COPY
+          </button>
+        </div>
+
+        <a
+          class="btn primary discord-join"
+          href="https://discord.gg/CeWyyEYgWj"
+          target="_blank"
+          rel="noopener"
+        >
+          JOIN DISCORD
+          <span>→</span>
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="discord-features">
+
+      <div>
+        <strong>UPDATES</strong>
+        <span>Server news & announcements</span>
+      </div>
+
+      <div>
+        <strong>COMMUNITY</strong>
+        <span>Chat with Zentra players</span>
+      </div>
+
+      <div>
+        <strong>SUPPORT</strong>
+        <span>Get help from the team</span>
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<div id="footer"></div>
+
+<script src="script.js"></script>
+
+<script>
+
+fetch("header.html?v=3", {cache:"no-store"})
+  .then(r => r.text())
+  .then(t => {
+    document.getElementById("header").innerHTML = t;
+
+    if(typeof initNavigation === "function"){
+      initNavigation();
+    }
+
+    if(typeof setActivePage === "function"){
+      setActivePage();
+    }
+  });
+
+
+fetch("footer.html")
+  .then(r => r.text())
+  .then(t => {
+    document.getElementById("footer").innerHTML = t;
+  });
+
+
+/* COPY DISCORD */
+
+const copyButton =
+  document.getElementById("copyDiscord");
+
+copyButton.addEventListener("click", async () => {
+
+  try {
+
+    await navigator.clipboard.writeText(
+      "https://discord.gg/CeWyyEYgWj"
+    );
+
+    copyButton.textContent = "COPIED";
+
+    setTimeout(() => {
+      copyButton.textContent = "COPY";
+    }, 1600);
+
+  } catch {
+
+    copyButton.textContent = "FAILED";
+
+    setTimeout(() => {
+      copyButton.textContent = "COPY";
+    }, 1600);
+
+  }
+
+});
+
+</script>
+
+<script src="auth.js"></script>
+</body>
+</html>
