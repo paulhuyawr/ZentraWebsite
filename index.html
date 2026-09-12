@@ -249,15 +249,7 @@
 
   enter.addEventListener("click", function(){
 
-    /* Start background music */
-    const music = document.getElementById("zentraMusic");
-
-    if(music){
-      music.loop = true;
-      music.volume = 0.35;
-
-      music.play().catch(function(){});
-    }
+    
 
     /* IMMEDIATE EXIT */
     intro.classList.add("zentraEntered");
@@ -2541,36 +2533,4 @@ fetch("footer.html")
 </html>
 
 
-<!-- ZENTRA MUSIC START -->
-<audio id="zentraMusic" preload="auto" loop>
-  <source src="assets/c418_aria_math.mp3" type="audio/mpeg">
-</audio>
 
-<script>
-(function(){
-  const music = document.getElementById("zentraMusic");
-  if (!music) return;
-
-  music.volume = 0.35;
-
-  function startMusic(){
-    music.play().catch(() => {
-      // Browser autoplay blocked — start on first user interaction
-      const resume = () => {
-        music.play().catch(()=>{});
-        document.removeEventListener("click", resume);
-        document.removeEventListener("touchstart", resume);
-        document.removeEventListener("pointerdown", resume);
-      };
-
-      document.addEventListener("click", resume, {once:true});
-      document.addEventListener("touchstart", resume, {once:true});
-      document.addEventListener("pointerdown", resume, {once:true});
-    });
-  }
-
-  // Intro is 2 seconds
-  setTimeout(startMusic, 2000);
-})();
-</script>
-<!-- ZENTRA MUSIC END -->
