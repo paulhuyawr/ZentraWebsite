@@ -3086,3 +3086,99 @@ a * {
   pointer-events: auto !important;
 }
 
+
+/* =========================================================
+   ZENTRAMC PERFORMANCE PATCH
+   Visual design preserved — lower GPU/CPU workload
+   ========================================================= */
+
+/* Promote only genuinely animated UI layers */
+.sidebar,
+.overlay,
+.menu,
+.close,
+.rank-card,
+.coin-card,
+.btn,
+#zentraIntro,
+#zentraEnter {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Use compositor-friendly transforms */
+.rank-card,
+.coin-card {
+  will-change: transform;
+}
+
+.rank-card:hover,
+.coin-card:hover {
+  will-change: auto;
+}
+
+/* Keep animated intro smooth without continuously repainting
+   expensive blur layers */
+#zentraIntro .introGlow,
+.zentraIntroGlow {
+  will-change: transform, opacity;
+  contain: strict;
+}
+
+/* Avoid expensive backdrop/filter work on small screens */
+@media (max-width: 700px) {
+
+  .rank-card,
+  .coin-card {
+    will-change: auto;
+  }
+
+  #zentraIntro .introGlow,
+  .zentraIntroGlow {
+    filter: blur(18px) !important;
+    width: 420px !important;
+    height: 420px !important;
+  }
+
+  /* Keep visual movement, but reduce repaint frequency */
+  #zentraIntro .introStars {
+    animation-duration: 12s !important;
+  }
+}
+
+/* Respect devices that explicitly request reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Prevent accidental huge paint areas */
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* GPU-friendly scrolling */
+.sidebar {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Don't animate expensive shadows on hover */
+.rank-card:hover,
+.coin-card:hover {
+  box-shadow: 0 20px 50px rgba(0,0,0,.3);
+}
+
+/* =========================================================
+   END PERFORMANCE PATCH
+   ========================================================= */
