@@ -3182,3 +3182,59 @@ body {
 /* =========================================================
    END PERFORMANCE PATCH
    ========================================================= */
+
+/* =========================================================
+   ZENTRAMC MOBILE PERFORMANCE FIX
+   Keeps the same visual design
+   ========================================================= */
+
+.rank-card,
+.coin-card {
+  will-change: auto !important;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+#zentraIntro,
+.zentraIntroGlow,
+#zentraIntro .introGlow {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Don't constantly promote every element to GPU */
+.btn,
+.copy,
+.menu,
+.close,
+.sidebar,
+.overlay {
+  will-change: auto !important;
+}
+
+/* Mobile: preserve glow but make it cheaper */
+@media (max-width:700px) {
+
+  .zentraIntroGlow,
+  #zentraIntro .introGlow {
+    filter: blur(12px) !important;
+  }
+
+  .rank-card:hover,
+  .coin-card:hover {
+    transform: none;
+  }
+
+  .rank-card,
+  .coin-card {
+    transition: transform .2s ease, border-color .2s ease !important;
+  }
+}
+
+/* Reduce expensive painting while page is moving */
+@media (max-width:700px) {
+  body {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
