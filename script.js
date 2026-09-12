@@ -411,7 +411,13 @@ document.head.appendChild(animationStyle);
 
     document.body.appendChild(overlay);
 
-    requestAnimationFrame(()=>{
+    /* Smoothly bring the buy popup into view */
+    requestAnimationFrame(() => {
+      overlay.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
       overlay.classList.add("active");
     });
 
