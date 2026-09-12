@@ -503,3 +503,48 @@ document.head.appendChild(animationStyle);
   }, true);
 
 })();
+
+/* =========================================================
+   ZENTRAMC GLOBAL BACKGROUND MUSIC
+   ========================================================= */
+
+(function () {
+  const MUSIC_SRC = "assets/c418_aria_math.mp3";
+
+  let audio = document.getElementById("zentraGlobalMusic");
+
+  if (!audio) {
+    audio = document.createElement("audio");
+    audio.id = "zentraGlobalMusic";
+    audio.src = MUSIC_SRC;
+    audio.loop = true;
+    audio.preload = "auto";
+    audio.volume = 0.35;
+    document.body.appendChild(audio);
+  }
+
+  function startZentraMusic() {
+    audio.loop = true;
+    audio.volume = 0.35;
+
+    audio.play().catch(() => {});
+  }
+
+  /* Start when browser permits it */
+  startZentraMusic();
+
+  /* First interaction unlocks audio on mobile */
+  ["click", "touchstart", "pointerdown", "keydown"].forEach(event => {
+    document.addEventListener(event, startZentraMusic, {
+      once: true,
+      passive: true
+    });
+  });
+
+  /* Keep looping if playback unexpectedly stops */
+  audio.addEventListener("ended", () => {
+    audio.currentTime = 0;
+    startZentraMusic();
+  });
+
+})();
