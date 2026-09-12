@@ -3238,3 +3238,35 @@ body {
   }
 }
 
+
+/* ===== BUY POPUP: ALWAYS CENTERED ===== */
+
+.zentra-buy-overlay{
+  position:fixed !important;
+  inset:0 !important;
+
+  width:100vw !important;
+  height:100vh !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  padding:20px !important;
+
+  z-index:999999 !important;
+
+  margin:0 !important;
+}
+
+.zentra-buy-popup{
+  position:relative !important;
+
+  margin:0 !important;
+
+  max-height:calc(100vh - 40px) !important;
+  overflow-y:auto !important;
+
+  transform-origin:center !important;
+}
+
