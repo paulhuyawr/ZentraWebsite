@@ -22,17 +22,13 @@
 
 <style>
 #zentraIntro{
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  background:#030006;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  z-index:2147483647;
-  animation:introExit .45s ease 1.55s forwards;
+  isolation:isolate !important;
+  position:fixed !important;
+  inset:0 !important;
+  z-index:2147483647 !important;
+  display:flex !important;
+  visibility:visible !important;
+  opacity:1;
 }
 
 .introGlow{
@@ -98,6 +94,22 @@
 }
 </style>
 <!-- ZENTRA INTRO END -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const intro = document.getElementById("zentraIntro");
+  if (!intro) return;
+
+  intro.style.display = "flex";
+  intro.style.visibility = "visible";
+  intro.style.opacity = "1";
+
+  setTimeout(() => {
+    intro.style.opacity = "0";
+    intro.style.visibility = "hidden";
+    intro.style.pointerEvents = "none";
+  }, 2000);
+});
+</script>
 
 
 
