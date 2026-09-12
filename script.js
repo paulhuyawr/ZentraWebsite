@@ -478,6 +478,12 @@ document.head.appendChild(animationStyle);
 
   document.addEventListener("click", async function(e){
 
+    /* AUTO SCROLL TOP ON BUY */
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
     const button = e.target.closest(
       ".buy-btn, .buy-now, .purchase-btn, [data-buy]"
     );
