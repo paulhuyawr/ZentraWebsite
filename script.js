@@ -409,7 +409,26 @@ document.head.appendChild(animationStyle);
       </div>
     `;
 
-    document.body.appendChild(overlay);
+    $1
+
+    /* AUTO CENTER BUY POPUP */
+    requestAnimationFrame(() => {
+      const popup = overlay.querySelector(".zentra-buy-popup");
+
+      if (popup) {
+        const rect = popup.getBoundingClientRect();
+        const targetY =
+          window.scrollY +
+          rect.top +
+          (rect.height / 2) -
+          (window.innerHeight / 2);
+
+        window.scrollTo({
+          top: Math.max(0, targetY),
+          behavior: "smooth"
+        });
+      }
+    });
 
     /* Smoothly bring the buy popup into view */
     requestAnimationFrame(() => {
